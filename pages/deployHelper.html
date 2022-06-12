@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/fa62c117c7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../styles.css" />
+    <title>Albino Cianciotti</title>
+  </head>
+
+
+ <header class="header center">
+      <h3>
+        <a class="link link--nav" href="../index.html">home</a>
+      </h3>
+
+      <nav class="nav center">
+        <button type="button" aria-label="toggle theme" class="btn btn--icon">
+          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
+        </button>
+
+        <button
+          type="button"
+          aria-label="toggle navigation"
+          class="btn btn--icon nav__hamburger"
+        >
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+<main>
+
+      </p>
+      <h2>Deploy-Helper</h2><br>
+      <h3>Description</h3><br>
+      <p><strong>Deploy Helper</strong> is designed to help developers during application releases. Many times to create the release package to be copied to the servers, it is necessary to copy many files (compiled project files such as .dll, etc.) which can be located on various different locations and this can be time consuming.</p>
+      <p>So, the idea was born to solve this problem, creating a software where you can <strong>extensively configure and save your deployments</strong> (in an xml file) <strong>and execute them at any time with just one click.</strong> For now the software allows the creation, saving and execution of the deploy (copy of the files) but the next functions in addition to the modification and deletion of the deployments will be more advanced such as linking documents to deployments, scheduling of deployments, execution of other custom tasks related to deployment (such as query on the db), etc.</p>
+      <p>Obviously Deploy Helper isn’t just for programmers, it can be used by anyone who needs to copy the same files often.</p><br>
+      <h3>How it work</h3><br>
+      <p>The software work with an xml file which is easy to understand and modify. In fact, you can modify the xml file even outside the program (with any editor) by adding, modifying or deleting the “deploy” nodes that will then be read by the program. The structure of the xml is really simple. Below an example:</p>
+      <pre class="hljs language-xml"><code>
+      <span class="hljs-tag">&lt;<span class="hljs-name">xml</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">deploys</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">deploy</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;test_deploy&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sourceFilePath</span>&gt;</span>C:/xampp/htdocs/index.php<span class="hljs-tag">&lt;/<span class="hljs-name">sourceFilePath</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sourceFilePath</span>&gt;</span>C:/xampp/htdocs/favicon.ico<span class="hljs-tag">&lt;/<span class="hljs-name">sourceFilePath</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sourceFilePath</span>&gt;</span>C:/xampp/htdocs/applications.html<span class="hljs-tag">&lt;/<span class="hljs-name">sourceFilePath</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sourceFilePath</span>&gt;</span>C:/xampp/htdocs/bitnami.css<span class="hljs-tag">&lt;/<span class="hljs-name">sourceFilePath</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">destinationPath</span>&gt;</span>C:/xampp/htdocs/xampp<span class="hljs-tag">&lt;/<span class="hljs-name">destinationPath</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">deploy</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">deploy</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;test_deploy2&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">sourceFilePath</span>&gt;</span>C:/xampp/htdocs/bitnami.css<span class="hljs-tag">&lt;/<span class="hljs-name">sourceFilePath</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">destinationPath</span>&gt;</span>C:/xampp/htdocs/xampp<span class="hljs-tag">&lt;/<span class="hljs-name">destinationPath</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">deploy</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">deploys</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">xml</span>&gt;</span>
+
+      </code></pre>
+      <br>
+      <h4>Dark Theme:</h4>
+      <br>
+      <p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/129180544-814935b7-572f-4e73-a973-9acbad2b1a6e.png" alt="image"></p>
+      <br>
+      <p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/129180604-cb622a07-41e4-4036-834c-dd0d8efb6438.png" alt="image"></p>
+      <br>
+      <h4>Light Theme:</h4>
+      <br>
+      <p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/129180682-04adf6b1-1ddc-42a7-add2-96af3e2f523f.png" alt="image"></p>
+      <br>
+      <p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/129180751-1866e58a-891d-474b-9339-e57a8220cd16.png" alt="image"></p>
+      <br>
+      <h3>
+        <a class="link link--nav" href="https://github.com/albino98/deploy-helper" target="_blank" >GitHub Repository</a>
+      </h3>
+</main>
+<footer class="footer">
+      <a>Copyright &copy; 2022 Albino Cianciotti. All rights reserved.</a>
+      <br>
+      <br>
+      <a
+        href="https://github.com/rajshekhar26/cleanfolio-minimal"
+        class="link footer__link"
+        target="_blank"
+      >
+        Template Credits.
+      </a>
+
+
+    </footer>
+
+    <div class="scroll-top">
+      <a aria-label="Scroll up" href="#top">
+        <i aria-hidden="true" class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+
+<script src="../script.js"></script>
+</html>

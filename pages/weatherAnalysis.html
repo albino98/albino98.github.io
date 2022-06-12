@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/fa62c117c7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../styles.css" />
+    <title>Albino Cianciotti</title>
+  </head>
+
+ <header class="header center">
+      <h3>
+        <a class="link link--nav" href="../index.html">home</a>
+      </h3>
+
+      <nav class="nav center">
+        <button type="button" aria-label="toggle theme" class="btn btn--icon">
+          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
+        </button>
+
+        <button
+          type="button"
+          aria-label="toggle navigation"
+          class="btn btn--icon nav__hamburger"
+        >
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+<main>
+
+
+  <h2>Weather-Analysis</h2>
+  <br>
+<h3>Description</h3>
+<br>
+<p>The purpose of the project is to historicize and analyze the meteorological data of a certain area, to understand how the weather will change and carry out predictive analysis based on the data collected using machine learning.</p>
+<p>The project consists of a python script (to be scheduled at 00:00 every day) and a python application with flask.</p>
+<br>
+<p><strong>The script</strong> (telegramForecast.py):</p>
+<br>
+<p><strong>1)</strong>  retrieves the weather forecast of the day with three-hour intervals through the free api provided by <a class="simpleLink" href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a>;</p>
+<p><strong>2)</strong>  sends these weather forecasts to a telegram bot;</p>
+<p><strong>3)</strong>  saves the data to a MySQL database;</p>
+<br>
+<p><strong>The flask application</strong> displays the graphs of the various weather parameters through the <a class="simpleLink" href="https://github.com/frappe/charts" target="_blank">Frappe Charts</a> library.</p>
+<br>
+<p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/151639990-978bc146-a3b0-4635-a29f-c4f5809293ac.png"></p>
+<br>
+<h3>Web Application Code</h3>
+<br>
+<h3>secrets.py</h3>
+<br>
+<p>The <a href="http://script.py">script.py</a> script is a simple python file that contains a dictionary with the db credentials and other information that you don’t want shown on the repository. In fact, it is enough not to commit the file by inserting it in the .gitignore.</p>
+<br>
+<pre class="hljs"><code>secrets = {
+    'DB_HOST': &quot;host_name&quot;,
+    'DB_USR': &quot;db user&quot;,
+    'DB_NAME': 'db_name',
+    'DB_PORT': 'db_port',
+    'DB_PWD': 'db_pwd',
+    #OPENWEATHERMAP CONF
+    'OWM_API_KEY': 'omw_key',
+    'OWM_CITY': 'name_of_city',
+    #TELEGRAM CONF
+    'TELEGRAM_BOT_KEY': 'telegram_key',
+    'TELEGRAM_CHAT_ID': 'chat_id'
+}
+</code></pre>
+<br>
+<h3>Telegram Script</h3>
+<br>
+<h4>Forecast Configuration</h4>
+<br>
+<img style="width:30%; height:20%;" src="https://user-images.githubusercontent.com/63566699/151667607-5f80e18b-edbc-4544-8fa0-af3a410f8b28.jpg">
+<img style="width:30%; height:20%;" src="https://user-images.githubusercontent.com/63566699/151667541-aab00f9b-2b03-41d6-a6de-2bf91430006c.jpg">
+<br>
+<p>The API used provides the weather forecast every three hours, scheduling the script at 00:00 will send 8 forecasts as shown above. If you want to send fewer forecasts, just change the number at the following line of the script:</p>
+<br>
+<pre class="hljs"><code>forecast = get_response().json()[&quot;list&quot;][0:8]
+</code></pre>
+<br>
+<h3>Deployment</h3>
+<br>
+<p>I have deployed the whole application on PythonAnywhere, the script that sends the weather forecast, the web application and the MySql database.</p>
+<br>
+<h4>Database Dump</h4>
+<br>
+<p>The following is a very useful command which allows you to export the database from PythonAnywhere. <strong>The command must be run via a bash console and not a db console. Replace USER and HOSTNAME in three occurrences:</strong></p>
+<br>
+<pre class="hljs"><code>mysqldump -u USER -h HOSTNAME --databases    'USER$default' --single-transaction --no-tablespaces &gt; backup.sql;
+</code></pre>
+<br>
+<p>The command will generate the .sql script at /home/user on PythonAnywhere:</p>
+<br>
+<p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/151668840-244b22db-dc86-412e-a88d-140bf449e64b.png" alt="image"></p>
+<br>
+<h4>Task Scheduling</h4>
+<br>
+<p>To schedule the weather forecast script on PythonAnywhere (or on your server) remember to set the correct version of python:</p>
+<br>
+<p><img class="normalImage" src="https://user-images.githubusercontent.com/63566699/151678490-8c98ef27-2706-4bd7-b17b-01dd7d7ad2bd.png" alt="image"></p>
+<br>
+
+<h3>
+  <a class="link link--nav" href="https://github.com/albino98/weather-analysis" target="_blank" >GitHub Repository</a>
+</h3>
+
+</main>
+<footer class="footer">
+      <a>Copyright &copy; 2022 Albino Cianciotti. All rights reserved.</a>
+      <br>
+      <br>
+      <a
+        href="https://github.com/rajshekhar26/cleanfolio-minimal"
+        class="link footer__link"
+        target="_blank"
+      >
+        Template Credits.
+      </a>
+
+
+    </footer>
+
+    <div class="scroll-top">
+      <a aria-label="Scroll up" href="#top">
+        <i aria-hidden="true" class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+
+<script src="../script.js"></script>
+</html>
