@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/fa62c117c7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+    $(document).ready(function(){
+      $("form").submit(function(){
+        event.preventDefault();
+        //alert("Submitted");
+        var parameters = $("form").serializeArray();
+        console.log(parameters);
+        var title = "";
+        var diameter = parameters[0].value;
+        var from = parameters[1].value;
+        var to = parameters[2].value;
+        var type = parameters[3].value;
+        var average = parameters[4].value;
+
+        var srcBase = "https://thingspeak.com/channels/1889322/charts/";
+        var src = srcBase.concat(diameter,"?dynamic=true&height=520&width=1098&yaxis=%C2%B5g%2Fm3&type=",type);
+
+        if(from != ""){
+          src = src.concat("&start=", from, "%2000:00:00")
+        }
+        if(to != ""){
+          src = src.concat("&to=", to, "%2000:00:00")
+        }
+        if(average != "no"){
+          src = src.concat("&average=", average)
+        }
+
+        if(diameter === "1"){
+          title = "PM1"
+        }
+        else if(diameter === "2"){
+          title = "PM2.5"
+        }
+        else if(diameter === "3"){
+          title = "PM10"
+        }
+        src = src.concat("&title=", title);
+        console.log(src);
+
+        //$("#queryResult").attr("src","https://thingspeak.com/channels/1889322/charts/1?dynamic=true&results=8000&title=PM10&type=line&yaxis=%C2%B5g%2Fm3&height=520&width=1098&average=60");
+        $("#queryResult").attr("src",src);
+        $('#queryResult').removeAttr('hidden');
+      });
+    });
+</script>
+
+
+    <link rel="stylesheet" href="../styles.css" />
+    <title></title>
+  </head>
+
+ <header class="header center">
+  
+      <h3>
+        <a class="link link--nav" href="../index.html">home</a>
+      </h3>
+  
+      <nav class="nav center">
+        <button type="button" aria-label="toggle theme" class="btn btn--icon">
+          <i aria-hidden="true" id="btn-theme" class="fas fa-moon"></i>
+        </button>
+
+        <button
+          type="button"
+          aria-label="toggle navigation"
+          class="btn btn--icon nav__hamburger"
+        >
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </header>
+<main>
+      <h2>Air quality monitoring</h2>
+      <br>
+      <h3>Description</h3>
+      <br>
+      <p>Project with ESP8266 WiFi board and PMS5003 sensor to measure the concentration of particulate matter in the air.</p>
+
+      <br>
+      
+      <p>The PMS5003 sensor measures the concentration of particulate matter in the air and the ESP board sends the data via API to a channel of the ThingSpeak platform. PM1, PM2.5 and PM10 values are calculated approximately every half hour by averaging several measurements. Please note that the project is not completed yet and the PMS sensor is not placed outside. Once finished, the sensor will be placed outdoors and a website will be developed for consulting the data. The project page will also be updated.</p>
+      <br>
+
+
+    
+<iframe width="100%" height="520" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1889322/charts/1?dynamic=true&results=500&title=PM1&type=line&yaxis=%C2%B5g%2Fm3&height=520&width=1098&average=60"></iframe>
+<br> <br>
+<iframe width="100%" height="520" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1889322/charts/2?bgcolor=%23ffffff&dynamic=true&results=500&title=PM2.5&type=line&yaxis=%C2%B5g%2Fm3&height=520&width=1098&average=60"></iframe>
+<br> <br>
+<iframe width="100%" height="520" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1889322/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=500&title=PM10&type=line&yaxis=%C2%B5g%2Fm3&height=520&width=1098&average=60"></iframe>
+<br><br>
+
+<h3>Custom query</h3>
+<br>
+
+<form id="queryForm">
+
+  <label for="diameter"><strong>Diameter:</strong></label>
+
+  <select name="diameter" id="diameter">
+    <option value="1">PM1</option>
+    <option value="2">PM2.5</option>
+    <option value="3">PM10</option>
+  </select> 
+
+<br><br>
+
+  <label for="from"><strong>Da:</strong> </label>
+  <input type="date" id="from" name="from">
+  <br>
+  <br>
+  <label for="to"><strong>A:</strong></label>
+  <input type="date" id="to" name="to">
+  <br>
+  <br>
+
+  <label for="type"><strong>Tipo di grafico:</strong></label>
+
+  <select name="type" id="type">
+    <option selected="selected" value="line">Line</option>
+    <option value="bar">Bar</option>
+    <option value="column">Column</option>
+    <option value="spline">Spline</option>
+  </select> 
+
+  <br><br>
+
+  <label for="average"><strong>Average (minutes):</strong></label>
+
+  <select name="average" id="average">
+    <option selected="selected" value="no">NO</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="60">60</option>
+    <option value="240">240</option>
+    <option value="720">720</option>
+    <option value="1440">1440</option>
+    <option value="daily">Daily</option>
+  </select> 
+
+  <br><br>
+
+  <button  class="formButton formButton2" type="submit"> Send </button>
+</form>
+
+<br><br>
+
+<iframe hidden id="queryResult" width="100%" height="520" style="border: 1px solid #cccccc;" src="">
+
+</iframe>
+
+<br><br>
+
+      <!--
+      <p>The channel is public and you can visit it at the following link. It is also possible to download the data in json, xml or csv format:  <a class="simpleLink" href="https://thingspeak.com/channels/1889322" target="_blank"> ThingSpeak Channel</a>.</p>
+
+      <p>For more details on the project visit the GitHub repository:  <a class="simpleLink" href="" target="_blank"> GitHub repository</a>.</p>
+      
+      <br>
+      -->
+      <br>
+      <h3>
+        <a class="link link--nav" href="https://github.com/albino98/Air-Quality" target="_blank" >GitHub repository</a>
+      </h3>
+
+</main>
+<footer class="footer">
+      <a>Copyright &copy; 2022 Albino Cianciotti. All rights reserved.</a>
+      <br>
+      <br>
+      <a
+        href="https://github.com/rajshekhar26/cleanfolio-minimal"
+        class="link footer__link"
+        target="_blank"
+      >
+        Template Credits.
+      </a>
+
+
+    </footer>
+
+    <div class="scroll-top">
+      <a aria-label="Scroll up" href="#top">
+        <i aria-hidden="true" class="fas fa-arrow-up"></i>
+      </a>
+    </div>
+
+<script src="../script.js"></script>
+</html>
