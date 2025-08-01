@@ -187,6 +187,22 @@ button {
   transition: transform 0.2s ease-in-out;
 }
 
+.btn--text {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--clr-primary, #333);
+  border-radius: 4px;
+  color: var(--clr-fg, #000);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn--text:hover {
+  background-color: var(--clr-primary, #333);
+  color: #fff;
+}
+
 .btn--outline {
   color: var(--clr-primary);
   border: 2px solid var(--clr-primary);
@@ -319,6 +335,8 @@ main {
   margin-right: 1em;
 }
 
+/*INIZIO vecchio stile progetti*/
+
 .projects__grid {
   max-width: 1100px;
   margin: 0 auto;
@@ -366,6 +384,93 @@ main {
   width: auto\9; /* ie8 */
   border-radius: 3%;
 }
+/*FINE vecchio stile progetti*/
+
+/*INIZIO stile progetti come stile articoli*/
+
+.projectTwo-grid {
+  display: grid;
+  /*grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));*/
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.projectTwo-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 0rem auto;
+}
+    body.dark .separator {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.projectTwo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.projectTwo-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.projectTwo-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+
+/*VECCHIA icona dimensione 100%*/
+/*
+.project-icon-fixed-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+  border-radius: 10%;
+}
+*/
+
+.project-icon-fixed-right {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+  border-radius: 10%;
+  pointer-events: none;
+}
+
+
+.project-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width:70%;
+}
+
+/*FINE stile progetti come stile articoli*/
 
 .articles-grid {
   display: grid;
@@ -400,11 +505,25 @@ main {
   font-size: 0.95rem;
   line-height: 1.4;
 }
+/*
+.views-label {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 6.75rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  pointer-events: none;
+}
+*/
 
 .views-label {
   position: absolute;
   bottom: 0.75rem;
-  right: 0.75rem;
+  right: 0rem;
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   font-size: 0.75rem;
@@ -414,7 +533,13 @@ main {
   pointer-events: none;
 }
 
-
+.pStack{
+	margin: 0em!important;
+    font-weight: 500;
+    font-size: 0.8rem!important;
+    color: var(--clr-fg-alt);
+	text-align:right;
+}
 
 .normalImage {
   max-width:100%;
@@ -523,7 +648,7 @@ main {
   }
 
   .about {
-    align-items: flex-start;
+    /*align-items: flex-start;*/
     margin-top: 2em;
   }
 
@@ -558,3 +683,77 @@ main {
 }
 
 /*END SCROLLBAR*/
+/*
+@media (max-width: 768px) {
+  .projectTwo-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.projectTwo-card h3,
+.projectTwo-card p {
+  flex: 1 1 auto;
+}
+
+
+.project-icon-fixed-right {
+  position: static;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+}
+*/
+@media (max-width: 768px) {
+  .projectTwo-card {
+    display: grid;
+    grid-template-columns: 1fr auto;  /* testo | immagine */
+    grid-template-rows: auto auto;    /* contenuto | views label */
+    grid-template-areas:
+      "text img"
+      "label label";
+    gap: 10px;
+    align-items: start;
+    position: relative;  
+  }
+
+  .project-text {
+    grid-area: text;
+  }
+
+
+  .project-icon-fixed-right {
+    grid-area: img;
+    width: 80px!important;  
+    height: 80px!important;
+    object-fit: cover;
+    border-radius: 4px;
+    align-self: start;
+  }
+
+  .views-label {
+    grid-area: label;
+    width: 100%;
+    text-align: center;
+    background: rgba(0,0,0,0.15);
+    border-radius: 4px;
+    padding: 0.3em 0.6em;
+    position: static !important;  
+    margin-top: 0.5em;
+  }
+}
+
+
+
+
+
+
+
+
